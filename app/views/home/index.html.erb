@@ -29,6 +29,11 @@
 <script type="text/javascript">
 	$(document).on('fbload', function(){
 
+		FB.Event.subscribe('edge.create', function(href, widget) {
+        alert('You liked the URL: ' + href);
+        window.location = "<%= video_path %>"
+    });
+
 		FB.getLoginStatus(function(response) {
 			alert(response.status)
 		  if (response.status === 'connected') {
