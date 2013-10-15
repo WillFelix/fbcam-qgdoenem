@@ -30,7 +30,7 @@
 	$(document).on('fbload', function(){
 
 		FB.getLoginStatus(function(response) {
-		  if (response.status !== 'unknown') {
+		  if (response.status === 'connected') {
 		    window.location = "<%= video_path %>"
 		  }
 		});
