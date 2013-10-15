@@ -10,28 +10,19 @@
 	<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,300italic,400,400italic,500,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<!-- Google Analytics -->
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-44608088-1', 'fbcam-peo-v2.herokuapp.com');
-	  ga('send', 'pageview');
-	</script>
-
 	<!-- Facebook Root -->
 	<div id="fb-root"></div>
 	<script>
 	  window.fbAsyncInit = function() {
 	    FB.init({
-	      appId      : '1393749097528499',                        // App ID from the app dashboard
-	      channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel file for x-domain comms
-	      status     : true,                                 // Check Facebook Login status
-	      xfbml      : true                                  // Look for social plugins on the page
+	      appId      : '1393749097528499',                  					      // App ID from the app dashboard
+	      channelUrl : 'http://fbcam-qgdoenem.herokuapp.com/',								// Channel file for x-domain comms
+	      status     : true,							                                  // Check Facebook Login status
+	      xfbml      : true               							                    // Look for social plugins on the page
 	    });
-	  };
+
+		  $(document).trigger('fbload');  //  <---- THIS RIGHT HERE TRIGGERS A CUSTOM EVENT CALLED 'fbload'
+		};
 
 		(function(d, s, id) {
 			var js, fjs = d.getElementsByTagName(s)[0];
