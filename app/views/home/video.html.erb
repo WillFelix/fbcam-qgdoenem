@@ -89,8 +89,8 @@
 
 	$(document).on('fbload', function(){
 		FB.getLoginStatus(function(response) {
-		  if (response.status !== 'connected') {
-		    window.location = <%= root_path %>
+		  if (response.status !== 'unknown') {
+		    window.location = "<%= root_path %>"
 		  }
 		});
 	});
