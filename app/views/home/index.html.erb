@@ -1,35 +1,5 @@
 <script type="text/javascript">
-	$(document).on('fbload', function(){
-	
-		function authUser(){
-
-			FB.login(function(response) {
-
-			  if (response.authResponse) {
-			    FB.api('/me', function(response) {
-			    	checkStatus();
-			    });
-			  }
-
-			}, {scope: 'email, user_likes'});
-
-		}
-
-		function checkStatus(){
-			FB.getLoginStatus(function(response) {
-		  	alert(response.status)
-			  if (response.status === 'connected') {
-			    var uid = response.authResponse.userID;
-			    var accessToken = response.authResponse.accessToken;
-			    window.location = "<%= video_path %>"
-			  }
-			});
-		}
-
-		checkStatus;
-
-	});
-
+	$(document).on('fbload', checkStatus);
 </script>
 
 <section class="general curtir">
