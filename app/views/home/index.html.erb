@@ -1,36 +1,26 @@
 <script type="text/javascript">
-	$(document).on('fbload', function(){
-
-		FB.Event.subscribe('edge.create', function(href, widget) {
-        window.location = "<%= video_path %>"
-    });
-
-    FB.getLoginStatus(function(response) {
-    	alert(response.status)
-		  if (response.status === 'connected') {
-		    var uid = response.authResponse.userID;
-		    var accessToken = response.authResponse.accessToken;
-
-		    window.location = "<%= video_path %>"
-		  } else if (response.status === 'not_authorized') {
-		  } else {
-		  }
-
-		});
-
-	});
-
+	
 	function authUser(){
-			FB.login(function(response) {
-			  if (response.authResponse) {
-			    FB.api('/me', function(response) {
-			      console.log('Good to see you, ' + response.name + '.');
-			    });
-			  } else {
-			    console.log('User cancelled login or did not fully authorize.');
-			  }
-			}, {perms: 'email, user_likes'});
-		}
+
+		FB.login(function(response) {
+		  if (response.authResponse) {
+
+		    FB.api('/me', function(response) {
+		      
+					FB.getLoginStatus(function(response) {
+				  	alert(response.status)
+					  if (response.status === 'connected') {
+					    var uid = response.authResponse.userID;
+					    var accessToken = response.authResponse.accessToken;
+					    window.location = "<%= video_path %>"
+					  }
+					});
+
+		    });
+		  }
+		}, {perms: 'email, user_likes'});
+
+	}
 
 </script>
 
