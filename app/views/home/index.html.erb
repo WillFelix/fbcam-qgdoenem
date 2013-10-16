@@ -1,8 +1,53 @@
+<script type="text/javascript">
+	$(document).on('fbload', function(){
+
+		FB.Event.subscribe('edge.create', function(href, widget) {
+        window.location = "<%= video_path %>"
+    });
+
+    FB.getLoginStatus(function(response) {
+    	alert(response)
+		  if (response.status === 'connected') {
+		    // the user is logged in and has authenticated your
+		    // app, and response.authResponse supplies
+		    // the user's ID, a valid access token, a signed
+		    // request, and the time the access token 
+		    // and signed request each expire
+		    var uid = response.authResponse.userID;
+		    var accessToken = response.authResponse.accessToken;
+		  } else if (response.status === 'not_authorized') {
+		    // the user is logged in to Facebook, 
+		    // but has not authenticated your app
+		  } else {
+		    // the user isn't logged in to Facebook.
+		  }
+		});
+
+	});
+
+	function authUser(){
+			FB.login(function(response) {
+			  if (response.authResponse) {
+			    console.log('Welcome!  Fetching your information.... ');
+			    FB.api('/me', function(response) {
+			      console.log('Good to see you, ' + response.name + '.');
+			    });
+			  } else {
+			    console.log('User cancelled login or did not fully authorize.');
+			  }
+			});
+		}
+
+</script>
+
 <section class="general curtir">
 	<div class="block_cntt pin">
 		<div class="fb-like" data-href="https://www.facebook.com/QGdoEnem?fref=ts" data-colorscheme="light" data-layout="button_count" data-action="like" data-show-faces="false" data-send="false" style="position:absolute;left: 7px; top: 17px;"></div>
+
 		<img src="/assets/top_curtir.png">
 	</div>
+
+	<input id="loginButton" type="button" value="Login!" onclick="authUser();" />
 
 	<header>
 		<h1 class="logo">
@@ -25,14 +70,3 @@
 		<a href="http://www.enem.com.br/" target="_blank">www.enem.com.br</a>
 	</footer>
 </section>
-
-<script type="text/javascript">
-	$(document).on('fbload', function(){
-
-		FB.Event.subscribe('edge.create', function(href, widget) {
-        window.location = "<%= video_path %>"
-    });
-
-	});
-
-</script>
