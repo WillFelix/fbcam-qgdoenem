@@ -86,11 +86,13 @@
 		]
 	});
 
-	FB.getLoginStatus(function(response) {
-  	alert(response.status)
-	  if (response.status !== 'connected') {
-	    window.location = "<%= root_path %>"
-	  }
+	$(document).on('fbload', function(){
+		FB.getLoginStatus(function(response) {
+	  	alert(response.status)
+		  if (response.status !== 'connected') {
+		    window.location = "<%= root_path %>"
+		  }
+		});
 	});
 
 </script>

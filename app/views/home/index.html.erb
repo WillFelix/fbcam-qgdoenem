@@ -1,31 +1,34 @@
 <script type="text/javascript">
+	$(document).on('fbload', function(){
 	
-	function authUser(){
+		function authUser(){
 
-		FB.login(function(response) {
+			FB.login(function(response) {
 
-		  if (response.authResponse) {
-		    FB.api('/me', function(response) {
-		    	checkStatus();
-		    });
-		  }
+			  if (response.authResponse) {
+			    FB.api('/me', function(response) {
+			    	checkStatus();
+			    });
+			  }
 
-		}, {scope: 'email, user_likes'});
+			}, {scope: 'email, user_likes'});
 
-	}
+		}
 
-	function checkStatus(){
-		FB.getLoginStatus(function(response) {
-	  	alert(response.status)
-		  if (response.status === 'connected') {
-		    var uid = response.authResponse.userID;
-		    var accessToken = response.authResponse.accessToken;
-		    window.location = "<%= video_path %>"
-		  }
-		});
-	}
+		function checkStatus(){
+			FB.getLoginStatus(function(response) {
+		  	alert(response.status)
+			  if (response.status === 'connected') {
+			    var uid = response.authResponse.userID;
+			    var accessToken = response.authResponse.accessToken;
+			    window.location = "<%= video_path %>"
+			  }
+			});
+		}
 
-	$(document).ready(checkStatus);
+	});
+
+	$(document).on('fbload', checkStatus);
 
 </script>
 
