@@ -3,7 +3,6 @@
 
 	function checkStatus(){
 		FB.getLoginStatus(function(response) {
-	  	alert(response.status)
 		  if (response.status === 'connected') {
 		    var uid = response.authResponse.userID;
 		    var accessToken = response.authResponse.accessToken;
@@ -27,8 +26,6 @@
 
 <section class="general curtir">
 	<div class="block_cntt pin">
-		<div class="fb-like" data-href="https://www.facebook.com/QGdoEnem?fref=ts" data-colorscheme="light" data-layout="button_count" data-action="like" data-show-faces="false" data-send="false" style="position:absolute;left: 7px; top: 17px;"></div>
-
 		<img src="/assets/top_curtir.png">
 	</div>
 
