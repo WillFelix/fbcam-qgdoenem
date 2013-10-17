@@ -88,14 +88,11 @@
 
 	function checkStatus(){
 		FB.getLoginStatus(function(response) {
-		  if (response.status === 'connected') {
-		    var uid = response.authResponse.userID;
-		    var accessToken = response.authResponse.accessToken;
-		    window.location = "<%= video_path %>"
+		  if (response.status !== 'connected') {
+		    window.location = "<%= root_path %>"
 		  }
 		});
 	}
 
 	$(document).on('fbload', checkStatus);
-	$(document).ready(checkStatus);
 </script>
