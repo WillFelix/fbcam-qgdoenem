@@ -22,28 +22,33 @@
 	      xfbml      : true               							                    // Look for social plugins on the page
 	    });
 
-		  $(document).trigger('fbload');  //  <---- THIS RIGHT HERE TRIGGERS A CUSTOM EVENT CALLED 'fbload'
+		  
+			$(document).on('fbload', checkLike);
 
-	  	FB.login(function(response) {
-			  if (response.session) {
-			   
-			    var user_id = response.session.uid;
-			    var page_id = "1393749097528499";
-			    var fql_query = "SELECT uid FROM page_fan WHERE page_id = "+page_id+"and uid="+user_id;
-			    var the_query = FB.Data.query(fql_query);
-			    alert("Response Session" + response.session)
-			    the_query.wait(function(rows) {
-			    		alert("Query" + rows)
-			        if (rows.length == 1 && rows[0].uid == user_id) {
-			        	alert("Uii Gugu")
-		            window.location = "<%= video_path %>"
-			        } else {
-			        	alert("OhMan")
-			          window.location = "<%= root_path %>"
-			        }
-			    });
-			  }
-			});
+			function checkLike(){
+		  	FB.login(function(response) {
+				  if (response.session) {
+				   
+				    var user_id = response.session.uid;
+				    var page_id = "1393749097528499";
+				    var fql_query = "SELECT uid FROM page_fan WHERE page_id = "+page_id+"and uid="+user_id;
+				    var the_query = FB.Data.query(fql_query);
+				    alert("Response Session" + response.session)
+				    the_query.wait(function(rows) {
+				    		alert("Query" + rows)
+				        if (rows.length == 1 && rows[0].uid == user_id) {
+				        	alert("Uii Gugu")
+			            window.location = "<%= video_path %>"
+				        } else {
+				        	alert("OhMan")
+				          window.location = "<%= root_path %>"
+				        }
+				    });
+				  }
+				});
+		  }
+
+		  $(document).trigger('fbload');  //  <---- THIS RIGHT HERE TRIGGERS A CUSTOM EVENT CALLED 'fbload'
 		};
 
 		(function(d, s, id) {

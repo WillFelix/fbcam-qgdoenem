@@ -33,6 +33,8 @@
 		</div>
 		<div class="col_02">
 				<form action="http://cers.mailee.me/go/add_contact_form" id="mailee-form" method="post">
+					<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>
+					
 					<input name="key" type="hidden" value="994119">
 					<input name="url_ok" type="hidden" value="https://www.facebook.com/QGdoEnem/app_190322544333196">
 					<input name="url_error" type="hidden" value="https://www.facebook.com/QGdoEnem/app_190322544333196">
