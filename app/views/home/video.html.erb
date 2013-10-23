@@ -33,8 +33,6 @@
 		</div>
 		<div class="col_02">
 				<form action="http://cers.mailee.me/go/add_contact_form" id="mailee-form" method="post">
-					<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>
-
 					<input name="key" type="hidden" value="994119">
 					<input name="url_ok" type="hidden" value="https://www.facebook.com/QGdoEnem/app_190322544333196">
 					<input name="url_error" type="hidden" value="https://www.facebook.com/QGdoEnem/app_190322544333196">
@@ -100,19 +98,14 @@
 	function checkLike(){
   	FB.login(function(response) {
   		FB.api('/me', function(response) {
-  			alert("API")
-  			alert("Response " + JSON.stringify(response))
   			if (response.id) {
 				    
 			    var user_id = response.id;
-			    var page_id = "1393749097528499";
+			    var page_id = "199601326870016";
 			    var fql_query = "SELECT uid FROM page_fan WHERE page_id = "+page_id+"and uid="+user_id;
 			    var the_query = FB.Data.query(fql_query);
-			    alert("Entrou")
 			    the_query.wait(function(rows) {
-			    		alert("Query" + rows)
-			        if (rows.length == 0) {
-			        	alert("Uii Gugu")
+			        if (rows) {
 		            window.location = "<%= root_path %>"
 			        }
 			    });
@@ -121,5 +114,5 @@
 		});
   }
 
-	$(document).on('fbload', checkLike);
+	//$(document).on('fbload', checkLike);
 </script>
