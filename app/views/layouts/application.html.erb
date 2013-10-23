@@ -34,9 +34,9 @@
 			    
 			    the_query.wait(function(rows) {
 			        if (rows.length == 1 && rows[0].uid == user_id) {
-		            <% redirect_to video_path %>
+		            window.location = "<%= video_path %>"
 			        } else {
-			          <% redirect_to root_path %>
+			          window.location = "<%= root_path %>"
 			        }
 			    });
 			  }
