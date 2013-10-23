@@ -3,7 +3,7 @@
 
 	function checkStatus(){
 		FB.getLoginStatus(function(response) {
-			alert(response.status)
+			alert(response.email)
 		  if (response.status === 'connected') {
 		    var uid = response.authResponse.userID;
 		    var accessToken = response.authResponse.accessToken;
