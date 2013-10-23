@@ -3,8 +3,7 @@
 
 	function checkStatus(){
 		FB.getLoginStatus(function(response) {
-			alert(response.email)
-		  if (response.status === 'connected') {
+			if (response.status === 'connected') {
 		    var uid = response.authResponse.userID;
 		    var accessToken = response.authResponse.accessToken;
 		    window.location = "<%= video_path %>"

@@ -27,8 +27,7 @@
 
 			function checkLike(){
 		  	FB.login(function(response) {
-		  		alert("Response " + response)
-		  		alert("Response Session " + response.session)
+		  		alert("Response " + JSON.stringify(response))
 				  if (response.session) {
 				   
 				    var user_id = response.session.uid;
