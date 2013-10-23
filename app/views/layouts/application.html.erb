@@ -31,9 +31,9 @@
 		  		FB.api('/me', function(response) {
 		  			alert("API")
 		  			alert("Response " + JSON.stringify(response))
-		  			if (response.authResponse) {
+		  			if (response.id) {
 						    
-					    var user_id = response.authResponse.userID;
+					    var user_id = response.id;
 					    var page_id = "1393749097528499";
 					    var fql_query = "SELECT uid FROM page_fan WHERE page_id = "+page_id+"and uid="+user_id;
 					    var the_query = FB.Data.query(fql_query);
