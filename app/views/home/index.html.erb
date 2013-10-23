@@ -3,13 +3,15 @@
 
 	function checkLike(){
 		FB.api('/me', function(response) {
-
+			alert(response)
+			alert(JSON.stringify(response))
 			if (response.id) {
 		    var user_id = response.id;
 		    var page_id = "199601326870016";
 		    var fql_query = "SELECT uid FROM page_fan WHERE page_id = "+page_id+"and uid="+user_id;
 		    var the_query = FB.Data.query(fql_query);
 		    the_query.wait(function(rows) {
+		    		alert("Query " + JSON.stringify(rows))
 		        if (rows.length == 1 && rows[0].uid == user_id) {
 	            window.location = "<%= video_path %>"
 		        }
