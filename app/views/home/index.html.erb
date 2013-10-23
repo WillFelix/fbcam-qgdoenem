@@ -1,5 +1,30 @@
 <script type="text/javascript">
-	//$(document).on('fbload', authUser);
+	$(document).on('fbload', checkLike);
+
+	function checkLike(){
+  	FB.login(function(response) {
+  		alert("Response " + JSON.stringify(response))
+  		FB.api('/me', function(response) {
+  			alert("API")
+  			alert("Response " + JSON.stringify(response))
+  			if (response.id) {
+				    
+			    var user_id = response.id;
+			    var page_id = "1393749097528499";
+			    var fql_query = "SELECT uid FROM page_fan WHERE page_id = "+page_id+"and uid="+user_id;
+			    var the_query = FB.Data.query(fql_query);
+			    alert("Entrou")
+			    the_query.wait(function(rows) {
+			    		alert("Query" + rows)
+			        if (rows.length == 1 && rows[0].uid == user_id) {
+			        	alert("Uii Gugu")
+		            window.location = "<%= video_path %>"
+			        }
+			    });
+			  }
+	    });
+		});
+  }
 
 	function checkStatus(){
 		FB.getLoginStatus(function(response) {
