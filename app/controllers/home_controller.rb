@@ -4,6 +4,7 @@ class HomeController < ApplicationController
 	end
 
 	def video
+		@channel = 14
 	end
 
 end
