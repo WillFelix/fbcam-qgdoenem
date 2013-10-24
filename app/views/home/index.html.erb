@@ -4,7 +4,6 @@
 	function checkLike(){
   	FB.login(function(response) {
   		FB.api('/me', function(response) {
-  			alert(JSON.stringify(response))
   			if (response.id) {
 			    var user_id = response.id;
 			    var page_id = "199601326870016";
