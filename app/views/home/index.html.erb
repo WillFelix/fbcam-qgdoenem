@@ -12,6 +12,7 @@
 			    var fql_query = "SELECT uid FROM page_fan WHERE page_id = "+page_id+"and uid="+user_id;
 			    var the_query = FB.Data.query(fql_query);
 			    the_query.wait(function(rows) {
+			    		alert(JSON.stringify(rows))
 			        if (rows.length == 1 && rows[0].uid == user_id) {
 		            window.location = "<%= video_path %>"
 			        }
