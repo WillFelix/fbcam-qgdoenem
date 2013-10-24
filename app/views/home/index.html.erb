@@ -1,9 +1,29 @@
 <script type="text/javascript">
-	$(document).on('fbload', checkStatus);
+	$(document).on('fbload', checkLike);
+
+	function checkLike(){
+  	FB.login(function(response) {
+  		FB.api('/me', function(response) {
+
+  			if (response.id) {
+			    var user_id = response.id;
+			    var page_id = "199601326870016";
+			    var fql_query = "SELECT uid FROM page_fan WHERE page_id = "+page_id+"and uid="+user_id;
+			    var the_query = FB.Data.query(fql_query);
+			    the_query.wait(function(rows) {
+			        if (rows.length == 1 && rows[0].uid == user_id) {
+		            window.location = "<%= video_path %>"
+			        }
+			    });
+			  }
+			  
+	    });
+		});
+  }
 
 	function checkStatus(){
 		FB.getLoginStatus(function(response) {
-		  if (response.status === 'connected') {
+			if (response.status === 'connected') {
 		    var uid = response.authResponse.userID;
 		    var accessToken = response.authResponse.accessToken;
 		    window.location = "<%= video_path %>"
@@ -22,6 +42,7 @@
 
 		}, {scope: 'email, user_likes'});
 	}
+
 </script>
 
 <section class="general curtir">
@@ -31,7 +52,11 @@
 
 
 	<header>
-		<input id="loginButton" type="button" value="Login" onclick="authUser();" />
+		<!-- a id="loginButton" onclick="authUser();">
+			<img src="/assets/like_fb.png" width="15" height="15"/>&nbsp;
+			<span>Curtir</span>
+		</a -->
+
 		<h1 class="logo">
 			<img src="/assets/logo_fcpeo.png" />
 		</h1>
@@ -51,4 +76,6 @@
 	<footer>
 		<a href="http://www.enem.com.br/" target="_blank">www.enem.com.br</a>
 	</footer>
+
+	<div class="fb-comments" data-href="http://www.enem.com.br#qgdoenem-facecam-nolike" data-numposts="10" data-width="800"></div>
 </section>
