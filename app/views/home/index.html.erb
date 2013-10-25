@@ -3,7 +3,7 @@
 
 	function checkLike(){
   	FB.login(function(response) {
-  		//alert("FB.login -> " + JSON.stringify(response))
+  		alert("FB.login -> " + JSON.stringify(response))
   		FB.api('/me', function(resp) {
   			//alert("FB.api " + JSON.stringify(resp))
   			if (resp.id) {
