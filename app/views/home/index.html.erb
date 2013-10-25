@@ -3,16 +3,14 @@
 
 	function checkLike(){
   	FB.login(function(response) {
-  		alert("FB.login -> " + JSON.stringify(response))
   		FB.api('/me', function(resp) {
-  			//alert("FB.api " + JSON.stringify(resp))
+
   			if (resp.id) {
 			    var user_id = resp.id;
 			    var page_id = "199601326870016";
 			    var fql_query = "SELECT uid FROM page_fan WHERE page_id = "+page_id+"and uid="+user_id;
 			    var the_query = FB.Data.query(fql_query);
 			    the_query.wait(function(rows) {
-			    		//alert(JSON.stringify(rows))
 			        if (rows.length == 1 && rows[0].uid == user_id) {
 		            window.location = "<%= video_path %>"
 			        }
@@ -20,6 +18,24 @@
 			  }
 
 	    });
+
+	    /*FB.api('/me/likes/PAGE_ID',function(response) {
+	    	if(response.data) {
+	    		if(!isEmpty(response.data)){
+	    			window.location = "<%= video_path %>"
+	    		}
+			  }else{
+			  	// ERROR
+			  }
+			});
+			 
+			function isEmpty(obj) {
+				for(var prop in obj) {
+					if(obj.hasOwnProperty(prop))	return false;
+			  }
+
+			  return true;
+			}*/
 		});
   }
 
